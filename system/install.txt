@@ -1,0 +1,11 @@
+How to install:
+1)Copy the database to your mysql
+2)change the connectivity variables on the includes\server.php file
+  and on the admin\admin\users\connection.php to the configuration of
+  your computer
+
+How to use:
+1)log in. if you dont have an account register by clicking on registe    on the login page.
+2) Once logged in, click on Chat to start a session with the Chatbot
+3)Logout once done.
+

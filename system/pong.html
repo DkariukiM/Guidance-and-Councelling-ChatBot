@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pong Game</title>
+    <script src="https://invboy-libraries.glitch.me/pixen/pixen-last.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+        body {
+            margin:0;
+            padding:0;
+            color:white;
+            width:100vw;
+            height:100vh;
+            display:flex;
+            align-items:center;
+            flex-direction:column;
+            justify-content:center;
+            background-color:#333;
+        }
+
+        a {
+            color:#ff0;
+        }
+
+        .controls {
+            width:100%;
+            display:flex;
+            justify-content:space-between;
+        }
+
+        button {
+            width:50px;
+            height:50px;
+            margin:10px;
+        }
+    </style>
+</head>
+<body>
+<span id="p1score" style="font-size: 30px;" >Player 1: 0</span>
+<span id="p2score" style="font-size: 30px;">Player 2: 0</span>
+<div class="app"></div>
+<div class="controls">
+    <button onclick="player1.y -= 2" style="font-size: 35px;"><i class="fa fa-chevron-up"></i></button>
+    <button onclick="player1.y += 2" style="font-size: 35px;"><i class="fa fa-chevron-down"></i></button>
+</div>
+<a href="welcome.php" style="font-size: 2.0rem;"> < Home </a>
+<script>
+
+
+    var game, player1, player2, ball;
+
+    player1 = {
+        y: 16,
+        x: 1,
+        score: 0
+    };
+
+    player2 = {
+        y: 16,
+        x: 30,
+        score: 0
+    };
+
+    ball = {
+        x: 16,
+        y: 16,
+        xs: Math.random() * 0.3 - 0.15,
+        ys: Math.random() * 0.3 - 0.15,
+        update: () => {
+            // Min ball horizontal speed
+            if(Math.abs(ball.xs)<0.2)
+                ball.xs *= 1.5;
+
+            if(Math.floor(ball.x) == 2
+                && ball.xs < 0) {
+                //Is in the player1 line
+                if(Math.abs(Math.floor(ball.y)-player1.y)<2) {
+                    ball.xs = -ball.xs;
+
+                    if(ball.y<player1.y)
+                        ball.ys -= 0.1;
+
+                    else if(ball.y>player1.y)
+                        ball.ys += 0.1;
+                }
+            } else
+            if(Math.floor(ball.x) == 29
+                && ball.xs > 0) {
+                //Is in the player2 line
+                if(Math.abs(Math.floor(ball.y)-player2.y)<2) {
+                    ball.xs = -ball.xs;
+
+                    if(ball.y<player2.y)
+                        ball.ys -= 0.1;
+
+                    else if(ball.y>player2.y)
+                        ball.ys += 0.1;
+                }
+            }
+
+            if(ball.x < -2) {
+                ball.x = 16;
+                ball.y = 16;
+                ball.xs = Math.random() * 0.3 - 0.15;
+                ball.ys = Math.random() * 0.3 - 0.15;
+                player2.score++;
+            } else if(ball.x > game.size+1) {
+                ball.x = 16;
+                ball.y = 16;
+                ball.xs = Math.random() * 0.3 - 0.15;
+                ball.ys = Math.random() * 0.3 - 0.15;
+                player1.score++;
+            }
+
+            if(ball.y < 0) {
+                ball.y = 0;
+                ball.ys = -ball.ys;
+            } else if(ball.y > game.size-1) {
+                ball.y = game.size-1;
+                ball.ys = -ball.ys;
+            }
+
+            ball.x += ball.xs;
+            ball.y += ball.ys;
+        }
+    };
+
+    window.onload = () => {
+        game = new Pixen(".app");
+
+        game.start();
+
+        //setInterval(draw, 500);
+        draw();
+    }
+
+    function draw() {
+        //Update ball
+        ball.update();
+
+        //Update player2
+        if(ball.y>player2.y) player2.y += 0.15;
+        else if(ball.y<player2.y) player2.y -= 0.15;
+
+        //Clear screen
+        game.clear(0);
+
+        //Draw players
+        drawPlayer(player1);
+        drawPlayer(player2);
+
+        //Draw ball
+        game.setPixel(ball.x,ball.y,1);
+
+        //Update score
+        document.querySelector("#p1score")
+            .innerText = "Player 1: " + player1.score;
+        document.querySelector("#p2score")
+            .innerText = "Player 2: " + player2.score;
+
+        //animate
+        requestAnimationFrame(draw);
+    }
+
+    function drawPlayer(player) {
+        game.setPixel(player.x, player.y, 1);
+        if(player.y > 0)
+            game.setPixel(player.x, player.y-1, 1);
+        if(player.y < 31)
+            game.setPixel(player.x, player.y+1, 1);
+    }
+</script>
+</body>
+</html>

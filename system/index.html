@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Home || Welcome </title>
+    <link rel="shortcut icon" type="image/png" href="assets/img/logo.png">
+    <link rel="stylesheet" href="assets/css/font-awesome.css"><!--https://use.fontawesome.com/releases/v5.7.2/css/all.css-->
+    <link rel="stylesheet" href="assets/css/landing.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <script src="assets/js/jquery-3.4.1.js"></script>
+
+    <style>
+        /*preloader css*/
+        .preloader
+        {
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background: #070707;
+            z-index: 100000000;
+
+        }
+        .preloader:before
+        {
+            content: 'Loading...';
+            position: absolute;
+            font-size: 12em;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.03);
+        }
+        .preloader.active
+        {
+            transform: translateY(-100vh);
+            transition: ease-in-out 2s;
+            transition-delay: 1s;
+
+        }
+        .counter
+        {
+            position: relative;
+            color: #f7f7f7;
+            font-size: 13em;
+            font-weight: 700;
+            z-index: 1;
+        }
+        .counter:after
+        {
+            content: '%';
+            font-size: 0.5em;
+        }
+        .hide
+        {
+            opacity: 0;
+            transition: 1s;
+            pointer-events: none;
+        }
+
+
+
+    </style>
+
+
+
+</head>
+
+<body>
+<!------------PRE-LOADER--------------->
+<div class="preloader">
+    <div class="counter">0</div>
+    <!-------preloader javascript---------->
+
+    <script type="text/javascript">
+        function counter(){
+            var count = setInterval(function(){
+                var c = parseInt($('.counter').text());
+                $('.counter').text((++c).toString());
+                if ( c == 100 ){
+                    clearInterval(count);
+                    $('.counter').addClass('hide')
+                    $('.preloader').addClass('active')
+
+
+                }
+            },5)
+        }
+        counter();
+        </script>
+
+</div>
+
+<section>
+<!--main container-->
+<div class="container" style="width: 100%;height: 100vh;background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.8)),url(assets/img/bg.jpg) center no-repeat;background-size: cover;">
+
+    <!----welcome message&ndash--->
+
+    <div class="banner-text">
+      <h1> WELCOME </h1>
+       <!-- <p style="font-size: 1.6em;"> Self care starts with you</p>-->
+        <div id="text" style="font-size:1.6em;">
+
+        </div>
+
+        <script type="text/javascript">
+            var i=0;
+            var today = new Date();
+            var hourNow = today.getHours();
+            var text;
+
+            if (hourNow >=22 && hourNow <=24 ){ //6:00pm
+                text = " It's not what happens to you, but how you react to it that matters!";
+            }else if(hourNow >= 20  && hourNow <= 22 ){//12:00pm
+                text = "The best way to predict your future is to create it!";
+            }else if(hourNow >= 18 && hourNow <= 20 ){//12:00pm
+                text = "You must do the thing that you think you cannot do!";
+            }else if(hourNow >= 16 && hourNow <= 18 ){//12:00pm
+                text = "And the trouble is, if you don't risk anything, you risk even more!";
+            }else if(hourNow >= 14 && hourNow <= 16 ){//12:00pm
+                text = "Whatever you fight, you strengthen, and what you resist, persists!";
+            }else if(hourNow >= 12 && hourNow <= 14 ){//12:00pm
+                text = "We can chose to throw stones,to stumble on them,to climb over them or to build with them!";
+            }else if(hourNow >=10 && hourNow <= 12 ){ //12:00 midnight
+                text = "You can't think your way to a new way of acting,You must act your way to a new way of thinking!";
+            }else if(hourNow >= 8 && hourNow <= 10 ){ //12:00 midnight
+                text = "Rainbows are people whose lives are bright,shining examples for others!";
+            }else if(hourNow >=6 && hourNow <=8 ){ //12:00 midnight
+                text = "When we are no longer able to change a situation,we are challenged to change ourselves!";
+            }else if(hourNow < 6 ){ //12:00 midnight
+                text = "until you make the unconscious conscious,it will direct your life and you will call it fate!";
+            }else{
+                text = "Self care starts with you!";
+            }
+
+
+            function typing() {
+                if(i<text.length){
+                    document.getElementById("text").innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing,100);
+                }
+            }
+            typing();
+        </script>
+        <!------login and sign up buttons---->
+        <a href="login.php"><button class="btn login-btn " style="margin-top: 20px;"> Login </button></a>
+        <a href="about.php"><button class="btn login-btn" style="margin-top: 20px;"> About </button></a>
+
+    </div>
+
+    </div>
+</section>
+</body>
+
+</html>
+

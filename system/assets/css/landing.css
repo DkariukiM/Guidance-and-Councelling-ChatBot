@@ -1,0 +1,124 @@
+/*default*/
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body
+{
+    height: 100%;
+
+}
+/*banner text*/
+.banner-text
+{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.banner-text h1
+{
+    color: white;
+    font-family: 'Italianno', cursive;
+    font-size: 70px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+.banner-text p
+{
+    color: white;
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-family:  'The Historia Demo Regular', sans-serif;
+    font-size: 1.6em;
+
+}
+
+
+/*buttons*/
+
+.btns
+{
+    position: absolute;
+    top: 50px;
+    right: 60px;
+
+}
+
+
+.btn
+{
+    width: 170px;
+    padding: 10px 15px;
+    margin-right: 20px;
+    border-radius: 50px;
+    font-family: 'The Historia Demo Regular', cursive;
+    font-size: 16px;
+    letter-spacing: 1px;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    border: 2px solid tomato;
+    transition: transform 0.3s;
+
+}
+.login-btn
+{
+    background-color: tomato;
+
+}
+.login-btn:hover
+{
+    background-color: transparent;
+    transform: translateY(-4px);
+}
+
+
+
+.btn:active
+{
+    transform: translateY(0px);
+
+}
+
+@media screen and (max-width: 768px)
+{
+    .banner-text h1
+    {
+        color: white;
+        font-family: 'Italianno', cursive;
+        font-size: 50px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+    }
+    .preloader:before
+    {
+        content: 'Loading...';
+        position: absolute;
+        font-size: 7em;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: rgba(255,255,255,.03);
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .banner-text h1
+    {
+        color: white;
+        font-family: 'Italianno', cursive;
+        font-size: 40px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+    }
+
+}
+
+
